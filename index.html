@@ -51,8 +51,8 @@ $('#bZoom').onclick=e=>{const z=document.body.classList.toggle('zoom');e.target.
 $('#bPause').onclick=e=>{paused=!paused;e.target.textContent=paused?'Play':'Pause';act().forEach(v=>paused?v.pause():v.play());sync();};
 document.querySelectorAll('.cell,.wipe').forEach(el=>el.addEventListener('click',e=>{if(!document.body.classList.contains('zoom')||mode==='wipe')return;const r=el.getBoundingClientRect();
 document.body.style.setProperty('--ox',((e.clientX-r.left)/r.width*100)+'%');document.body.style.setProperty('--oy',((e.clientY-r.top)/r.height*100)+'%');}));
-const w=$('#wipe'),top=w.querySelector('.top'),bar=w.querySelector('.bar');let drag=false;
-function setX(x){const r=w.getBoundingClientRect();let p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));top.style.clipPath=`inset(0 0 0 ${p}%)`;bar.style.left=p+'%';}
+const w=$('#wipe'),tv=w.querySelector('.top'),bar=w.querySelector('.bar');let drag=false;
+function setX(x){const r=w.getBoundingClientRect();let p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));tv.style.clipPath=`inset(0 0 0 ${p}%)`;bar.style.left=p+'%';}
 w.addEventListener('pointerdown',e=>{drag=true;w.setPointerCapture(e.pointerId);setX(e.clientX);});
 w.addEventListener('pointermove',e=>{if(drag)setX(e.clientX);});w.addEventListener('pointerup',()=>drag=false);
 </script></body></html>
