@@ -30,13 +30,13 @@ body.wide .side{grid-template-columns:1fr}
 <button id="bZoom">Zoom 3× (detail)</button><button id="bPause">Pause</button></div>
 <p id="zhint" class="hide" style="text-align:center">Zoomed: tap/click the video to move the zoom point.</p>
 <section id="side" class="side">
-<div class="cell"><span class="lab">Original</span><video src="truheart-original.mp4" muted loop playsinline autoplay preload="auto"></video></div>
-<div class="cell"><span class="lab">Topaz Starlight upscale</span><video src="truheart-topaz.mp4" muted loop playsinline autoplay preload="auto"></video></div>
+<div class="cell"><span class="lab">Original</span><video src="truheart-original.mp4?v=2" muted loop playsinline autoplay preload="auto"></video></div>
+<div class="cell"><span class="lab">Topaz Starlight upscale</span><video src="truheart-topaz.mp4?v=2" muted loop playsinline autoplay preload="auto"></video></div>
 </section>
 <section id="wipe" class="wipe hide">
 <span class="lab">Original</span><span class="lab r">Topaz Starlight upscale</span>
-<video src="truheart-original.mp4" muted loop playsinline preload="auto"></video>
-<video class="top" src="truheart-topaz.mp4" muted loop playsinline preload="auto"></video>
+<video src="truheart-original.mp4?v=2" muted loop playsinline preload="auto"></video>
+<video class="top" src="truheart-topaz.mp4?v=2" muted loop playsinline preload="auto"></video>
 <div class="bar"></div></section>
 <footer id="ft"></footer>
 <script>
@@ -57,7 +57,7 @@ const w=$('#wipe'),tv=w.querySelector('.top'),bar=w.querySelector('.bar');let dr
 function setX(x){const r=w.getBoundingClientRect();let p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));tv.style.clipPath=`inset(0 0 0 ${p}%)`;bar.style.left=p+'%';}
 w.addEventListener('pointerdown',e=>{drag=true;w.setPointerCapture(e.pointerId);setX(e.clientX);});
 w.addEventListener('pointermove',e=>{if(drag)setX(e.clientX);});w.addEventListener('pointerup',()=>drag=false);
-const C={truheart:{t:'Truheart hero (Roman on stage): Original vs Topaz Starlight upscale',s:'Original 612×720 · Topaz Starlight Precise 2.6 → 2160×2540 (shown here as a 1224×1440 web encode). Both are shown at the same display size.',o:'truheart-original.mp4',u:'truheart-topaz.mp4',ar:'612/720',mw:'720px',f:'Original: the pre-Topaz stage.mp4 from the Truheart concept. Upscale: Topaz for Web, Starlight Precise 2.6. No color or overlay changes.'},
+const C={truheart:{t:'Truheart hero (Roman on stage): Original vs Topaz Starlight upscale',s:'Original 612×720 (cropped to 526×618 to match) · Topaz Starlight Precise 2.6 → 2160×2540 (cropped above the podium front to remove a burned-in emoji, shown here as a 1224×1440 web encode). Both are shown at the same display size.',o:'truheart-original.mp4?v=2',u:'truheart-topaz.mp4?v=2',ar:'612/720',mw:'720px',f:'Original: the pre-Topaz stage.mp4 from the Truheart concept. Upscale: Topaz for Web, Starlight Precise 2.6. No color or overlay changes.'},
 stirling:{t:'Stirling hero: Original vs Topaz Starlight upscale',s:'Original 1920×1080 · Topaz Starlight Precise 2.6 → 3840×2160 (shown here as a 2560×1440 web encode). Both are shown at the same display size.',o:'stirling-original.mp4',u:'stirling-topaz.mp4',ar:'16/9',mw:'1400px',f:'Original: film/opening.mp4 from the live Stirling concept (unchanged). Upscale: Topaz for Web, Starlight Precise 2.6. No color or overlay changes.'}};
 function setClip(k){const c=C[k];document.title=c.t;$('#ttl').textContent=c.t;$('#sub').textContent=c.s;$('#ft').textContent=c.f;
 document.body.style.setProperty('--ar',c.ar);document.body.style.setProperty('--mw',c.mw);document.body.classList.toggle('wide',k==='stirling');
